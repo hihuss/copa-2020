@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,13 +16,13 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameOverPanel;
     public Text levelCompletedTxt;
-    public Text countDownText; 
+    public Text countDownText;
     float timeLeft;
 
-    bool paused = true; 
+    bool paused = true;
 
     GameObject[] collectables;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +31,7 @@ public class PlayerController : MonoBehaviour
         gameOverPanel.SetActive(true);
         levelCompletedTxt.gameObject.SetActive(false);
         countDownText.gameObject.SetActive(true);
-        
+
         loadingGame = GameObject.FindWithTag("LoadingGameScript");
         Debug.Log(loadingGame);
 
@@ -61,17 +62,17 @@ public class PlayerController : MonoBehaviour
                 gameOverPanel.SetActive(false);
             }
         }
-        
+
     }
 
     private void FixedUpdate()
     {
         if (!paused)
         {
-            
+
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
-        
+
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce(movement * speed);
@@ -116,11 +117,12 @@ public class PlayerController : MonoBehaviour
      //   if (level == 1)
      //   {
             levelCompletedTxt.text = $"Congratulations! \r\nLevel 2 is coming soon!";
-     //   } 
+     //   }
       //  else
       //  {
       //      gameOverPanel.SetActive(false);
-      //      SceneManager.LoadScene("Level1");
+      int nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+      SceneManager.LoadScene(nextSceneToLoad);
       //  }
     }
 }
