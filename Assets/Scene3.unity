@@ -2750,7 +2750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &954775725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2763,6 +2763,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296ddb69731664f7b83b9c0ca461ff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamePanel: {fileID: 0}
+  timerText: {fileID: 0}
+  welcomeText: {fileID: 0}
+  explanationText: {fileID: 0}
   speed: 1
 --- !u!4 &954775726
 Transform:
@@ -3103,9 +3107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a062949108c8694e969afcf744b673e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 1508991560}
-  levelCompletedTxt: {fileID: 1523832913}
-  countDownText: {fileID: 174287697}
+  loadingGame: {fileID: 0}
+  moveBall: 0
 --- !u!1 &1306412665
 GameObject:
   m_ObjectHideFlags: 0

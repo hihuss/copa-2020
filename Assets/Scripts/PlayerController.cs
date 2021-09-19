@@ -12,62 +12,51 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     float speed = 5;
 
-    GameObject loadingGame;
+    public GameObject loadingGame;
 
-    public GameObject gameOverPanel;
-    public Text levelCompletedTxt;
-    public Text countDownText;
-    float timeLeft;
 
-    bool paused = true;
+   // public Text levelCompletedTxt;
+ //   public Text countDownText;
+ //   public Button startGameButton;
+ //   public Text startGameButtonText;
+
+
+
+    public bool moveBall = false;
 
     GameObject[] collectables;
 
     // Start is called before the first frame update
     void Start()
     {
-        level = LoadingGame.level;
-        timeLeft = 5.0f;
-        gameOverPanel.SetActive(true);
-        levelCompletedTxt.gameObject.SetActive(false);
-        countDownText.gameObject.SetActive(true);
+ //      level = LoadingGame.level;
+ //       gameOverPanel.SetActive(true);
+  //      levelCompletedTxt.gameObject.SetActive(false);
+       // countDownText.gameObject.SetActive(true);
 
-        loadingGame = GameObject.FindWithTag("LoadingGameScript");
-        Debug.Log(loadingGame);
+   //     Debug.Log(loadingGame);
 
         rb = GetComponent<Rigidbody>();
 
         collectables = GameObject.FindGameObjectsWithTag("Collectable");
         foreach (GameObject collectable in collectables)
         {
-            Debug.Log(collectable.name);
             collectable.SetActive(false);
         }
         collectables[0].SetActive(true);
-        Debug.Log(collectables);
 
-        StartCoroutine(DoPause());
+     //   StartCoroutine(DoPause());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(timeLeft > 0)
-        {
-            timeLeft -= Time.deltaTime;
-            countDownText.text = (timeLeft).ToString("0");
-            if(timeLeft < 0)
-            {
-                countDownText.gameObject.SetActive(false);
-                gameOverPanel.SetActive(false);
-            }
-        }
 
     }
 
     private void FixedUpdate()
     {
-        if (!paused)
+        if (moveBall)
         {
 
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -77,12 +66,6 @@ public class PlayerController : MonoBehaviour
 
         rb.AddForce(movement * speed);
         }
-    }
-
-    IEnumerator DoPause()
-    {
-        yield return new WaitForSeconds(5.0f);
-        paused = false;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -103,9 +86,9 @@ public class PlayerController : MonoBehaviour
             // Level Completed
             rb.velocity = Vector3.zero;
             rb.isKinematic = true;
-           levelCompletedTxt.text = $"Level {level} completed!";
-           levelCompletedTxt.gameObject.SetActive(true);
-           gameOverPanel.SetActive(true);
+ //          levelCompletedTxt.text = $"Level {level} completed!";
+ //          levelCompletedTxt.gameObject.SetActive(true);
+  //         gameOverPanel.SetActive(true);
          //  loadingGame.SendMessage("StopTimer");
            Invoke("LoadNewLevel", 3.0f);
         }
@@ -116,7 +99,7 @@ public class PlayerController : MonoBehaviour
     {
      //   if (level == 1)
      //   {
-            levelCompletedTxt.text = $"Congratulations! \r\nLevel 2 is coming soon!";
+  //          levelCompletedTxt.text = $"Congratulations! \r\nLevel 2 is coming soon!";
      //   }
       //  else
       //  {

@@ -3,37 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class LevelClass 
+{
+    public int Level { get; set; }
+    public string Country { get; set; }
+    public string Goal { get; set; }
+    public string Details() 
+    {
+        return string.Format(" {0} is the level {1} and the goal is {2}", Country, Level, Goal);
+    }
+}
+
 public class LoadingGame : MonoBehaviour
 {
 
-    public static int level;
-    
-    bool goalGateAlreadyDown;
-
+    public static int level = 1;
+    public GameObject gamePanel;
     public Text timerText;
+    public Text welcomeText;
+    public Text explanationText;
+
+    List<LevelClass> levelList = new List<LevelClass>() 
+    {
+        new LevelClass { Level = 1, Country = "Italy", Goal = "pizzas" }
+    };
+
+    bool goalGateAlreadyDown = false;
 
     public float speed = 1;
 
-    Coroutine lastRoutine = null;
+    // Coroutine lastRoutine = null;
 
 
-    // Start is called before the first frame update
     void Start()
     {
-        goalGateAlreadyDown = false;
+        Debug.Log($"Level {level} loaded");
 
-        level++;
-       
-        Debug.Log("Level " + level + " scene loaded");
-    
-        GameObject timerTextObj = GameObject.Find("TimerText");
-        timerText = timerTextObj.GetComponent<Text>();
-        timerText.color = Color.black;
-
-        Invoke("StartTimer", 5);
+        SetLevelText();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(!goalGateAlreadyDown)
@@ -49,29 +57,42 @@ public class LoadingGame : MonoBehaviour
         }
     }
 
-    void StartTimer()
+
+    void SetLevelText() 
     {
-        lastRoutine = StartCoroutine(TimerFunc());
-    }
-
-    void StopTimer()
-    {
-        if(lastRoutine == null)
-            Debug.Log("Timer has not been started yet!");
-
-        StopCoroutine(lastRoutine);
-        lastRoutine = null;
-    }
-
-    IEnumerator TimerFunc()
-    {   
-        float t = 0f;
-        while(true)
+        foreach (LevelClass lvl in levelList)
         {
-            t += Time.deltaTime;
-            string timeText = "Time: " + t.ToString("0.00");
-            timerText.text = timeText;
-            yield return null;
+            if (level == lvl.Level) 
+            {
+                welcomeText.text = $"Welcome to {lvl.Country}!";
+                welcomeText.alignment = TextAnchor.MiddleCenter;
+                explanationText.text = $"Your goal is to collect all {lvl.Goal}, and get to the WHAT?";
+                explanationText.alignment = TextAnchor.MiddleCenter;
+            }
         }
     }
+
+
+    public void StartTheLevel() 
+    {
+        gamePanel.SetActive(false);
+        GameObject playerObject = GameObject.Find("Player");
+        PlayerController playerScript = playerObject.GetComponent<PlayerController>();
+        playerScript.moveBall = true;
+
+        Debug.Log($"Level {level} started!");
+    }
+
+    void MoveToNextScene() 
+    {
+        
+    }
+
+    void SetLevelCompletedCanvas() 
+    {
+        // level completed text: Level completed, size 50
+    }
+
+
+
 }
