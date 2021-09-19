@@ -7,11 +7,12 @@ public class LoadingGame : MonoBehaviour
 {
 
     public static int level;
+    
     bool goalGateAlreadyDown;
-    Text timerText;
-    float theTime;
-    public float speed = 1;
 
+    public Text timerText;
+
+    public float speed = 1;
 
     Coroutine lastRoutine = null;
 
@@ -21,16 +22,9 @@ public class LoadingGame : MonoBehaviour
     {
         goalGateAlreadyDown = false;
 
-    //    GameObject stage = GameObject.FindGameObjectWithTag("StageContainer");
-    //    for (int count = 0; count < stage.transform.childCount; count++)
-    //    {
-    //        stage.transform.GetChild(count).gameObject.SetActive(false);
-    //    }
-    //    stage.transform.GetChild(level).gameObject.SetActive(true);
-
         level++;
        
-        Debug.Log("Level 1 scene loaded");
+        Debug.Log("Level " + level + " scene loaded");
     
         GameObject timerTextObj = GameObject.Find("TimerText");
         timerText = timerTextObj.GetComponent<Text>();

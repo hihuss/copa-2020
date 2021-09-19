@@ -1282,6 +1282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296ddb69731664f7b83b9c0ca461ff90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
 --- !u!4 &954775726
 Transform:
   m_ObjectHideFlags: 0
@@ -1868,6 +1869,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a062949108c8694e969afcf744b673e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 0}
+  levelCompletedTxt: {fileID: 0}
+  countDownText: {fileID: 0}
 --- !u!1 &1306412665
 GameObject:
   m_ObjectHideFlags: 0
