@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: PebbledGravel_WMShader
   m_Shader: {fileID: 4800000, guid: 02f9653e969ec11459c0ebb367b07cb8, type: 3}
   m_ShaderKeywords: _EMISSION
@@ -20,11 +21,11 @@ Material:
     m_TexEnvs:
     - _AO:
         m_Texture: {fileID: 2800000, guid: 74968bcc596691b4fab1a164c84c1d5a, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2.59, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Albedo:
         m_Texture: {fileID: 2800000, guid: f4ed305362918144e97c242b8301811e, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 4.96, y: 0.28}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
         m_Texture: {fileID: 0}
@@ -48,7 +49,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Height:
         m_Texture: {fileID: 2800000, guid: b008c37730af1ae4fa7faad8c6dffbca, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2.34, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
@@ -56,7 +57,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Metallic:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 1.44, y: 1.54}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 0}
@@ -64,7 +65,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Normal:
         m_Texture: {fileID: 2800000, guid: bedfc1b580f2a5f4d9bc40c2d7872747, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 4.29, y: 1.24}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
@@ -76,7 +77,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _Smoothness:
         m_Texture: {fileID: 2800000, guid: 78e0f021c5e92c64d967315093e39104, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2.26, y: 1}
         m_Offset: {x: 0, y: 0}
     - _texcoord:
         m_Texture: {fileID: 0}
@@ -110,3 +111,4 @@ Material:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _ColorTint: {r: 1, g: 1, b: 1, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
