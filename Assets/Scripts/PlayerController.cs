@@ -3,39 +3,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    int level;
-
-    Rigidbody rb;
-    float speed = 5;
-
-    public GameObject loadingGame;
-
-
-   // public Text levelCompletedTxt;
- //   public Text countDownText;
- //   public Button startGameButton;
- //   public Text startGameButtonText;
-
-
+    private LoadingGame loadingGameScript;
+    private StopwatchScript stopwatchScript;
 
     public bool moveBall = false;
 
-    GameObject[] collectables;
+    private Rigidbody rb;
+    private float speed = 5;
+    private GameObject[] collectables;
 
-    // Start is called before the first frame update
     void Start()
     {
- //      level = LoadingGame.level;
- //       gameOverPanel.SetActive(true);
-  //      levelCompletedTxt.gameObject.SetActive(false);
-       // countDownText.gameObject.SetActive(true);
-
-   //     Debug.Log(loadingGame);
-
         rb = GetComponent<Rigidbody>();
 
         collectables = GameObject.FindGameObjectsWithTag("Collectable");
@@ -45,10 +26,14 @@ public class PlayerController : MonoBehaviour
         }
         collectables[0].SetActive(true);
 
-     //   StartCoroutine(DoPause());
+        GameObject loadingGameGameObject = GameObject.Find("LoadingGameScript");
+        loadingGameScript = loadingGameGameObject.GetComponent<LoadingGame>();
+
+        
+        GameObject canvasGameObject = GameObject.Find("Canvas");
+        stopwatchScript = canvasGameObject.GetComponent<StopwatchScript>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -81,31 +66,20 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
+        if (other.gameObject.tag == "Wall")
+        {
+            // count how many times the wall has been hit
+        }
+
         if (other.gameObject.name == "Goal")
         {
             // Level Completed
+            moveBall = false;
             rb.velocity = Vector3.zero;
             rb.isKinematic = true;
- //          levelCompletedTxt.text = $"Level {level} completed!";
- //          levelCompletedTxt.gameObject.SetActive(true);
-  //         gameOverPanel.SetActive(true);
-         //  loadingGame.SendMessage("StopTimer");
-           Invoke("LoadNewLevel", 3.0f);
+
+            stopwatchScript.StopStopwatch();
+            loadingGameScript.SetLevelCompletedCanvas();
         }
-    }
-
-
-    void LoadNewLevel()
-    {
-     //   if (level == 1)
-     //   {
-  //          levelCompletedTxt.text = $"Congratulations! \r\nLevel 2 is coming soon!";
-     //   }
-      //  else
-      //  {
-      //      gameOverPanel.SetActive(false);
-      int nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-      SceneManager.LoadScene(nextSceneToLoad);
-      //  }
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +5,6 @@ using System;
 
 public class StopwatchScript : MonoBehaviour
 {
-
     public Text stopwatchText;
 
     bool stopwatchActive = false;
@@ -23,8 +21,7 @@ public class StopwatchScript : MonoBehaviour
         {
             currentTime = currentTime + Time.deltaTime;
         }
-        TimeSpan time = TimeSpan.FromSeconds(currentTime);
-        stopwatchText.text = time.ToString(@"mm\:ss\:fff");
+        stopwatchText.text = ConvertCurrentTimeToReadableStrinng();
     }
 
     public void StartStopwatch ()
@@ -35,6 +32,15 @@ public class StopwatchScript : MonoBehaviour
 
     public void StopStopwatch() 
     {
+        Debug.Log("Stopwatch stopped..");
         stopwatchActive = false;
+        int level = PlayerPrefs.GetInt(Constants.LEVEL);
+        PlayerPrefs.SetString(Constants.LEVEL + ' ' + level, ConvertCurrentTimeToReadableStrinng());
     }
+
+    private string ConvertCurrentTimeToReadableStrinng()
+    {
+        TimeSpan time = TimeSpan.FromSeconds(currentTime);
+         return time.ToString(@"mm\:ss\:fff");
+    } 
 }
