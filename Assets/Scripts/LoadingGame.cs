@@ -18,7 +18,6 @@ public class LevelClass
 
 public class LoadingGame : MonoBehaviour
 {
-
     public static int level;
     public GameObject gamePanel;
     public Text welcomeText;
@@ -26,6 +25,8 @@ public class LoadingGame : MonoBehaviour
     public Text timeTaken;
     public Button startLevelButton;
     public Button goToNextLevelButton;
+    public Button startOverButton;
+    public Button quitButton;
 
     private List<LevelClass> levelList = new List<LevelClass>() 
     {
@@ -62,11 +63,10 @@ public class LoadingGame : MonoBehaviour
         }
     }
 
-    void SetLevelText() 
+    private void SetLevelText() 
     {
         foreach (LevelClass lvl in levelList)
         {
-            Debug.Log(lvl.Details());
             if (level == lvl.Level) 
             {
                 welcomeText.text = $"Welcome to {lvl.Country}!";
@@ -83,12 +83,11 @@ public class LoadingGame : MonoBehaviour
         gamePanel.SetActive(false);
         explanationText.gameObject.SetActive(false);
         startLevelButton.gameObject.SetActive(false);
-        stopwatchText.gameObject.SetActive(true);
 
         GameObject playerObject = GameObject.Find("Player");
         PlayerController playerScript = playerObject.GetComponent<PlayerController>();
         playerScript.moveBall = true;
-
+ 
         Debug.Log($"Level {level} started!");
     }
 
@@ -113,19 +112,53 @@ public class LoadingGame : MonoBehaviour
 
     public void LoadNextLevel()
     {
+
         if (level < 3)
         {
             int nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
             SceneManager.LoadScene(nextSceneToLoad);
         }
+        else {
+            SetCanvasAfterLastLevel();
+        }
+    }
+
+    private void SetCanvasAfterLastLevel() {
+        goToNextLevelButton.gameObject.SetActive(false);
+        startOverButton.gameObject.SetActive(true);
+        quitButton.gameObject.SetActive(true);
+
+        welcomeText.text = "Good job! You finished the game.";
+        TextAllignemt(welcomeText);
+        string levelOneTime = PlayerPrefs.GetString("Level 1");
+        string levelTwoTime = PlayerPrefs.GetString("Level 2");
+        string levelThreeTime = PlayerPrefs.GetString("Level 3");
+
+        string timeTakenString = $"Your times: ";
+        if (!String.IsNullOrEmpty(levelOneTime)) {
+            timeTakenString += $"\n 1. level: {levelOneTime}";
+        }
+        if (!String.IsNullOrEmpty(levelTwoTime)) {
+            timeTakenString += $"\n 2. level: {levelTwoTime}";
+        }
+        if (!String.IsNullOrEmpty(levelThreeTime)) {
+            timeTakenString += $"\n 3. level: {levelThreeTime}";
+        }    
+        timeTaken.text = timeTakenString;
+    }
+
+    public void StartOver() {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ExitGame() {
+        Debug.Log("Quitting the game...");
+        Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
     }
 
     void OnApplicationQuit()
     {
-        Debug.Log("Application quitted!");
-        Debug.Log("Time for the first level " + PlayerPrefs.GetString("Level 1"));
-        Debug.Log("Time for the second level " + PlayerPrefs.GetString("Level 2"));
-        Debug.Log("Time for the third level " + PlayerPrefs.GetString("Level 3"));
         PlayerPrefs.DeleteAll();
     }
 }
