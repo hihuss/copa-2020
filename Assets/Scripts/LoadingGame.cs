@@ -41,7 +41,7 @@ public class LoadingGame : MonoBehaviour
 
     void Start()
     {
-        level = SceneManager.GetActiveScene().buildIndex + 1;
+        level = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt(Constants.LEVEL, level);
         Debug.Log($"Level {level} loaded");
 
