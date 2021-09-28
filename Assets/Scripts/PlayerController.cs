@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     private StopwatchScript stopwatchScript;
 
     public bool moveBall = false;
+    private int timesHit = 0;
 
     private Rigidbody rb;
     private float speed = 5;
@@ -32,11 +33,6 @@ public class PlayerController : MonoBehaviour
         
         GameObject canvasGameObject = GameObject.Find("Canvas");
         stopwatchScript = canvasGameObject.GetComponent<StopwatchScript>();
-    }
-
-    void Update()
-    {
-
     }
 
     private void FixedUpdate()
@@ -66,11 +62,6 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Wall")
-        {
-            // count how many times the wall has been hit
-        }
-
         if (other.gameObject.name == "Goal")
         {
             // Level Completed
@@ -79,7 +70,16 @@ public class PlayerController : MonoBehaviour
             rb.isKinematic = true;
 
             stopwatchScript.StopStopwatch();
-            loadingGameScript.SetLevelCompletedCanvas();
+            loadingGameScript.SetLevelCompletedCanvas(timesHit);
+        }
+    }
+
+    private void OnCollisionEnter(Collision other) 
+    {
+        if (other.gameObject.tag == "Wall")
+        {
+            Debug.Log("Wall hit!");
+            timesHit++;
         }
     }
 }

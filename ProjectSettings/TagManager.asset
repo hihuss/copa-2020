@@ -8,6 +8,7 @@ TagManager:
   - StageContainer
   - LoadingGameScript
   - Wall
+  - Pyramids
   layers:
   - Default
   - TransparentFX

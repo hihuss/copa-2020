@@ -628,9 +628,10 @@ Transform:
   m_LocalPosition: {x: -5.257679, y: 0.8709291, z: -1.8605714}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2018072265}
   - {fileID: 215252284}
   - {fileID: 1862123058}
+  - {fileID: 2018072265}
+  - {fileID: 479164032}
   m_Father: {fileID: 1731506554}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1106,7 +1107,7 @@ GameObject:
   - component: {fileID: 215252284}
   m_Layer: 0
   m_Name: ObsticleWalls
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1126,7 +1127,7 @@ Transform:
   - {fileID: 713674672}
   - {fileID: 958882585}
   m_Father: {fileID: 95749436}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &253563511
 PrefabInstance:
@@ -1405,7 +1406,7 @@ GameObject:
   - component: {fileID: 423771940}
   m_Layer: 0
   m_Name: Wall4
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1540,7 +1541,7 @@ GameObject:
   - component: {fileID: 477806165}
   m_Layer: 0
   m_Name: Wall3
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1645,13 +1646,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479164031}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.76, y: 0, z: -5.33}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 9.017679, y: -0.8709291, z: -3.4694285}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1849521258}
-  m_Father: {fileID: 1731506554}
-  m_RootOrder: 4
+  m_Father: {fileID: 95749436}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &479164033
 MonoBehaviour:
@@ -2203,7 +2204,7 @@ GameObject:
   - component: {fileID: 725844922}
   m_Layer: 0
   m_Name: Wall2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3321,6 +3322,7 @@ MonoBehaviour:
   goToNextLevelButton: {fileID: 1401320906}
   startOverButton: {fileID: 959908498}
   quitButton: {fileID: 4329191}
+  timesHit: {fileID: 329995085}
   speed: 1
 --- !u!1 &1306412665
 GameObject:
@@ -3438,7 +3440,7 @@ GameObject:
   - component: {fileID: 1343556177}
   m_Layer: 0
   m_Name: Wall1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4242,7 +4244,7 @@ RectTransform:
   - {fileID: 863799440}
   - {fileID: 1922241824}
   m_Father: {fileID: 1731506554}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4415,7 +4417,6 @@ Transform:
   - {fileID: 31637783}
   - {fileID: 95749436}
   - {fileID: 1616461087}
-  - {fileID: 479164032}
   - {fileID: 1597638134}
   m_Father: {fileID: 1873950025}
   m_RootOrder: 0
@@ -4480,7 +4481,7 @@ GameObject:
   - component: {fileID: 1849521259}
   m_Layer: 0
   m_Name: openingDoor
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4685,7 +4686,7 @@ Transform:
   - {fileID: 1573770465}
   - {fileID: 1883020999}
   m_Father: {fileID: 95749436}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1873950024
 GameObject:
@@ -5031,7 +5032,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 0, z: 1.5}
   m_Children: []
   m_Father: {fileID: 95749436}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &2018072266
 SphereCollider:

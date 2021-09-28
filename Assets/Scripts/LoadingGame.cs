@@ -27,6 +27,8 @@ public class LoadingGame : MonoBehaviour
     public Button goToNextLevelButton;
     public Button startOverButton;
     public Button quitButton;
+    public Text timesHit;
+
 
     private List<LevelClass> levelList = new List<LevelClass>() 
     {
@@ -92,17 +94,20 @@ public class LoadingGame : MonoBehaviour
     }
 
     
-    public void SetLevelCompletedCanvas() 
+    public void SetLevelCompletedCanvas(int numberOfTimesHti) 
     {
         gamePanel.SetActive(true);
         goToNextLevelButton.gameObject.SetActive(true);
         timeTaken.gameObject.SetActive(true);
+        timesHit.gameObject.SetActive(true);
 
         welcomeText.text = $"Level {level} completed!";
         TextAllignemt(welcomeText);
         string timePlayerTook = PlayerPrefs.GetString(Constants.LEVEL + ' ' + level);
         timeTaken.text = $"Your time: {timePlayerTook}";
         TextAllignemt(timeTaken);
+        timesHit.text = $"Walls have been hit {numberOfTimesHti} times";
+        TextAllignemt(timesHit);
     }
 
     private void TextAllignemt(Text textElement) 
@@ -127,6 +132,7 @@ public class LoadingGame : MonoBehaviour
         goToNextLevelButton.gameObject.SetActive(false);
         startOverButton.gameObject.SetActive(true);
         quitButton.gameObject.SetActive(true);
+        timesHit.gameObject.SetActive(false);
 
         welcomeText.text = "Good job! You finished the game.";
         TextAllignemt(welcomeText);
