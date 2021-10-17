@@ -9,6 +9,7 @@ public class StartMenu : MonoBehaviour
     {
         Debug.Log("Clicked");
         int nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
+        PlayerPrefs.SetInt(Constants.PRACTICE, 0);
         SceneManager.LoadScene(nextSceneToLoad);
     }
 
@@ -16,5 +17,10 @@ public class StartMenu : MonoBehaviour
         Debug.Log("Quitting the game...");
         Application.Quit();
         // UnityEditor.EditorApplication.isPlaying = false;
+    }
+
+    public void StartPractice(int lv) {
+	PlayerPrefs.SetInt(Constants.PRACTICE, 1);
+        SceneManager.LoadScene(lv);
     }
 }

@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         speedFactor = PlayerPrefs.GetInt(Constants.SPEED);
-        speed = speed * (1 + (speedFactor - 1) * 0.3f);
+        speed = speed * (1 + (speedFactor - 1) * 0.2f);
 
         collectables = GameObject.FindGameObjectsWithTag("Collectable");
         foreach (GameObject collectable in collectables)
@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
             if(collectedIndex < collectables.Length - 1)
             {
                 collectables[collectedIndex + 1].SetActive(true);
+                SetParticles();
             }
 
             Destroy(other.gameObject);

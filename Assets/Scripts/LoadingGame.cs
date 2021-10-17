@@ -26,6 +26,7 @@ public class LoadingGame : MonoBehaviour
     public Button startLevelButton;
     public Button goToNextLevelButton;
     public Button startOverButton;
+    public Button backToMenuButton;
     public Button quitButton;
     public Text timesHit;
 
@@ -97,7 +98,11 @@ public class LoadingGame : MonoBehaviour
     public void SetLevelCompletedCanvas(int numberOfTimesHti) 
     {
         gamePanel.SetActive(true);
-        goToNextLevelButton.gameObject.SetActive(true);
+        if (1 == PlayerPrefs.GetInt(Constants.PRACTICE)) {
+            backToMenuButton.gameObject.SetActive(true);
+        } else {
+            goToNextLevelButton.gameObject.SetActive(true);
+        }        
         timeTaken.gameObject.SetActive(true);
         timesHit.gameObject.SetActive(true);
 
