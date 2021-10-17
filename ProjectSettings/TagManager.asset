@@ -9,6 +9,7 @@ TagManager:
   - LoadingGameScript
   - Wall
   - Pyramids
+  - Glowing
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,10 +15,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float speed = 5;
     private GameObject[] collectables;
+    private int speedFactor;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        speedFactor = PlayerPrefs.GetInt(Constants.SPEED);
+        speed = speed * (1 + (speedFactor - 1) * 0.3f);
 
         collectables = GameObject.FindGameObjectsWithTag("Collectable");
         foreach (GameObject collectable in collectables)
@@ -26,6 +29,8 @@ public class PlayerController : MonoBehaviour
             collectable.SetActive(false);
         }
         collectables[0].SetActive(true);
+
+	SetParticles();
 
         GameObject loadingGameGameObject = GameObject.Find("LoadingGameScript");
         loadingGameScript = loadingGameGameObject.GetComponent<LoadingGame>();
@@ -40,17 +45,20 @@ public class PlayerController : MonoBehaviour
         if (moveBall)
         {
 
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+          // float moveHorizontal = Input.GetAxis("Horizontal");
+          // float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        rb.AddForce(movement * speed);
+          // Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+          // rb.AddForce(movement * speed);
+           Vector3 tilt = Input.acceleration;
+           tilt = Quaternion.Euler(90, 0, 0) * tilt;
+           rb.AddForce(tilt * speed);
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.tag == "Collectable")
         {
             int collectedIndex = Array.IndexOf(collectables, other.gameObject);
@@ -80,6 +88,17 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Wall hit!");
             timesHit++;
+        }
+    }
+
+    private void SetParticles() 
+    {
+        GameObject[] glowings = GameObject.FindGameObjectsWithTag("Glowing");
+        int particles = PlayerPrefs.GetInt(Constants.PARTICLES);
+        Debug.Log("particles: " + particles);
+        foreach (GameObject glowig in glowings)
+        {
+            glowig.SetActive(particles == 1);
         }
     }
 }
